@@ -1,0 +1,171 @@
+<html>
+<head>
+  <meta charset="UTF-8"> 
+  <title>ロボット問題</title>
+  <link rel="stylesheet" href="../css/map.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/form_style.css">
+  <link rel="stylesheet" href="../css/sweetalert2.min.css">
+</head>
+<body>
+
+<script src="../js/sweetalert2.min.js"></script>
+
+<script src="../js/robot.js"></script>
+<script src="map.js"></script>
+<script src="../js/map_func.js"></script>
+<script src="../js/c_control.js"></script>
+<script src="../js/acorn_interpreter.js"></script>
+<script src="../js/blockly_compressed.js"></script>
+<script src="../js/blocks_compressed.js"></script>
+<script src="../js/javascript_compressed.js"></script>
+<script src="../js/blocks_visualflow.js"></script>
+<script src="../js/ja.js"></script>
+
+<div id="header">
+  <h1 id="title">ロボット問題</h1>
+  <div id="links">
+    <p>/ <a href="../">もどる</a> /</p>
+  </div>
+</div>
+<div class="container">
+  <div id="robotBalloon">
+    <p></p>
+  </div>
+  <div class="row">
+    <div class="col" id="mapColumn">
+      <div id="map"></div>
+      <div id="leftBlocks"><p>あと <span id="capacity"></span> ブロック</p></div>
+      <div id="remainingEnergy"><p>🪫のこり <span id="energy"></span></p></div>
+      <div id="controlPanel">
+        <p>
+          <span class="super-small" id="resetLabel">リセット</span><br>
+          <button id="resetButton">&#x1f536;</button>
+        </p>
+        <p>
+          <span class="super-small" id="speedLabel">ロボットのはやさ</span><br>
+          <select id="robotSpeed">
+            <option value="0">ゆっくり</option>
+            <option value="1" selected>ふつう</option>
+            <option value="2">はやい</option>
+            <option value="3">こうそく</option>
+            <option value="4">☆★☆</option>
+          </select>
+        </p>
+        <p>
+          <button id="stopButton">ストップ</button>
+        </p>
+        <p>
+          <button id="runButton">スタート</button>
+        </p>
+        <p>
+          <span class="super-small" id="patternLabel">パターン</span><br>
+          <select id="patternSelector">
+            <option value="">ぜんぶ</option>
+          </select>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+          <button id="hintButton">ヒント &#129300;</button>
+          <button id="xmlButton">xml</button>
+        </p>
+        <div id="registers">
+          <table>
+            <caption class="super-small">レジスター</caption>
+            <tbody>
+            <tr>
+              <th>A</th><th>B</th>
+              <th>C</th><th>D</th>
+              <th>E</th><th>F</th>
+              <th>G</th><th>H</th>
+            </tr>
+            <tr>
+              <td>0</td><td>0</td>
+              <td>0</td><td>0</td>
+              <td>0</td><td>0</td>
+              <td>0</td><td>0</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="col" id="workspaceColumn">
+      <div id="blocklyDiv"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="row">
+    <div id="create-zone">
+      <h2>&#11036;&#11035;マップ&#128997;&#128998;</h2>
+      <table>
+        <tr>
+          <th>行</th><th>マス</th>
+        </tr>
+        <tr>
+          <td>0</td><td><input type="text" name="map-row0" id="map-row0" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>1</td><td><input type="text" name="map-row1" id="map-row1" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>2</td><td><input type="text" name="map-row2" id="map-row2" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>3</td><td><input type="text" name="map-row3" id="map-row3" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>4</td><td><input type="text" name="map-row4" id="map-row4" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>5</td><td><input type="text" name="map-row5" id="map-row5" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>6</td><td><input type="text" name="map-row6" id="map-row6" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>7</td><td><input type="text" name="map-row7" id="map-row7" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>8</td><td><input type="text" name="map-row8" id="map-row8" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>9</td><td><input type="text" name="map-row9" id="map-row9" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>10</td><td><input type="text" name="map-row10" id="map-row10" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>11</td><td><input type="text" name="map-row11" id="map-row11" value="" class="map-values"></td>
+        </tr>
+        <tr>
+          <td>ゴール</td><td><input type="text" name="map-goals" id="map-goals" value="" class="map-number"> こ</td>
+        </tr>
+      </table>
+      <h2>&#x1F6E0;&#xFE0F;ロボット</h2>
+      <table>
+        <tr>
+          <th>設定</th><th>数</th>
+        </tr>
+        <tr>
+          <td>よこ</td><td><input type="text" name="robot-x" id="robot-x" value="" class="map-number"></td>
+        </tr>
+        <tr>
+          <td>たて</td><td><input type="text" name="robot-y" id="robot-y" value="" class="map-number"></td>
+        </tr>
+        <tr>
+          <td>向き</td><td><input type="text" name="robot-dir" id="robot-dir" value="" class="map-number"></td>
+        </tr>
+      </table>
+      <p><button id="generate-url">&#10024;かんせい&#10024;</button><br><br>
+        <a href="#" id="g-url"></a></p>
+    </div>
+  </div>
+</div>
+
+<script src="../js/visualflow.js">
+</script>
+</body>
+</html>
