@@ -25,7 +25,7 @@ Map.prototype =
 		"speed": 1,
 		"soft": false
 	},
-	"hint": "すべてのゴールへ行こう",
+	"hint": "%goals% このゴールへ行こう",
 	"state": 0,
 	"goals": 2,
 	"patterns": 1,
