@@ -36,8 +36,10 @@ Map.prototype =
 		"next": "",
 		"genurl": "https://kondoumasaki.github.io/create-robot-mondai/q-multi-goals/render.html"
 	},
+	"useMapPreProcess": false,
+	"preProcessDescriptions": [],	// [ { "c": char, "d": str }, ... ]
 	"robot": {
-		"type": 0,
+		"type": 2,
 		"Basic": {
 			"forward": true,
 			"turn_right": true,
@@ -45,14 +47,14 @@ Map.prototype =
 			"nop": true
 		},
 		"Standard": {
-			"floor_color_is": true,
-			"robot_direction_is": true,
-			"movable_is": true
+			"floor_color_is": false,
+			"robot_direction_is": false,
+			"movable_is": false
 		},
 		"Advanced": {
 			"times_loop": true,
-			"floor_color_loop": true,
-			"movable_loop": true
+			"floor_color_loop": false,
+			"movable_loop": false
 		},
 		"Expert": {
 			"write_register": true,
@@ -102,11 +104,20 @@ Map.prototype =
 	"hintBlocks": '',
 	"map2": [],
 	"chars2": [],
+	"pmaps": [],	// [ <map>, ... ]
+	"pcords": [],	// [ { "y": num, "x": num, "v": str }, ... ]
 	
 	"image_file_dir": '../img/'
 }
 // end=%%
 ;
+
+/**
+ * マップに数字以外の場合を埋め込んだ場合のプリプロセス
+ */
+Map.prototype.mapPreProcess = function() {
+	// set map values to Map.prototype.pmaps[i], Map.prototype.pcords
+};
 
 /**
  * コード実行前の処理
