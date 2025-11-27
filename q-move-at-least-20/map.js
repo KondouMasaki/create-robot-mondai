@@ -5,21 +5,21 @@ Map.prototype =
 {
 	"map": [
 		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,5,1,1,1,1,1,1],
-		[1,1,1,1,1,'A',1,1,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,0,0,0,1,1,1,1,1],
-		[1,1,1,0,0,0,0,0,1,1,1,1],
-		[1,1,1,1,0,0,0,1,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,0,0,'A',5,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,1,1,1,1,1,1,1,1,1],
+		[1,0,0,'A',5,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
-		"x": 5,
-		"y": 8,
+		"x": 1,
+		"y": 10,
 		"direction": 0,
 		"life": 65535,
 		"speed": 1,
@@ -29,20 +29,20 @@ Map.prototype =
 	// %state% : stateの値
 	// %statecolor% : stateの値を色にする
 	// %statedirection% : stateの値を方向にする
-	"hint": "15 マス以上乗ってからゴールへ行こう",
+	"hint": "20 マス以上乗ってからゴールへ行こう",
 	"state": 0,
 	"goals": 1,
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
-		"question": "15 マス以上",
+		"question": "20 マス以上",
 		"previous": "",
 		"next": "",
-		"genurl": "https://kondoumasaki.github.io/create-robot-mondai/q-move-at-least-15/render.html"
+		"genurl": "https://kondoumasaki.github.io/create-robot-mondai/q-move-at-least-20/render.html"
 	},
 	"useMapPreProcess": true,
 	"preProcessDescriptions": [
-		{ "c": 'A', "d": '15 マス以上乗ったかを調べる赤いマス'}
+		{ "c": 'A', "d": '20 マス以上乗ったかを調べる赤いマス'}
 	],	// [ { "c": char, "d": str }, ... ]
 	"robot": {
 		"type": 2,
@@ -178,7 +178,7 @@ Map.prototype.afterMoved = function(t, pos) {
 					}
 				}
 			}
-			if (count < 15) {
+			if (count < 20) {
 				const map = Map.prototype.map;
 				for (let i = 0; i < 12; i++) {
 					for (let j = 0; j < 12; j++) {
