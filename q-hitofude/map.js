@@ -31,7 +31,7 @@ Map.prototype =
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
-		"question": "シンプル",
+		"question": "一筆書き",
 		"previous": "",
 		"next": "",
 		"genurl": "https://kondoumasaki.github.io/create-robot-mondai/q-hitofude/render.html"
